@@ -23,9 +23,97 @@ def show_result_block(r):
         st.markdown("- ✅ 특이사항 없음")
 
 
-st.title("📝 서논술형 자동 채점 (규칙 기반)")
-st.caption("키워드 그룹 매칭 + 오개념 트랩 + 결론 방향 확인 기반의 1차 자동 채점 도구입니다. "
-           "자유서술형 텍스트 특성상 100% 정확하지 않을 수 있으므로, 결과는 반드시 교사가 최종 검수해 주세요.")
+st.markdown(
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+    .grading-header-wrap {
+        font-family: 'Noto Sans KR', sans-serif;
+        padding: 22px 0 18px 0;
+        border-bottom: 1px solid #E2E5EA;
+        margin-bottom: 6px;
+    }
+    .grading-header-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+    .grading-stamp {
+        flex-shrink: 0;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 3px solid #D6293E;
+        color: #D6293E;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Noto Serif KR', serif;
+        font-weight: 900;
+        font-size: 14px;
+        letter-spacing: -1px;
+        transform: rotate(-9deg);
+        line-height: 1.15;
+        text-align: center;
+        white-space: pre-line;
+    }
+    .grading-title-block {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .grading-title {
+        font-family: 'Noto Serif KR', serif;
+        font-weight: 900;
+        font-size: 32px;
+        color: #1B2A4A;
+        letter-spacing: -0.5px;
+        margin: 0;
+    }
+    .grading-tag {
+        padding: 3px 10px;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: #D6293E;
+        border: 1.5px solid #D6293E;
+        border-radius: 999px;
+    }
+    .grading-caption {
+        margin-top: 12px;
+        padding-left: 14px;
+        border-left: 3px solid #D6293E;
+        color: #5B6472;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 14.5px;
+        line-height: 1.65;
+        max-width: 760px;
+    }
+    @media (max-width: 640px) {
+        .grading-title { font-size: 24px; }
+        .grading-stamp { width: 46px; height: 46px; font-size: 11px; }
+    }
+    </style>
+
+    <div class="grading-header-wrap">
+        <div class="grading-header-row">
+            <div class="grading-stamp">채점<br/>완료</div>
+            <div class="grading-title-block">
+                <span class="grading-title">서논술형 자동 채점</span>
+                <span class="grading-tag">규칙 기반</span>
+            </div>
+        </div>
+        <div class="grading-caption">
+            키워드 그룹 매칭 · 오개념 트랩 · 결론 방향 확인을 기반으로 한 1차 자동 채점 도구입니다.<br/>
+            자유서술형 텍스트 특성상 100% 정확하지 않을 수 있으므로, 결과는 반드시 교사가 최종 검수해 주세요.
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 set_name = st.sidebar.radio("세트 선택", list(RUBRICS.keys()), format_func=lambda k: RUBRICS[k]["label"])
 rubric = RUBRICS[set_name]
